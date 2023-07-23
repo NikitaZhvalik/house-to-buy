@@ -10,4 +10,6 @@ export default async function(state) {
     view.render(state.filter.params);
     // запрос на сервер
     await state.filter.getResults();
+    // обновляем счетчик на кнопке
+    view.changeBtnText(state.filter.result.length)
 }
