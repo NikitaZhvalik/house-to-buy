@@ -32,8 +32,6 @@ export default async function(state) {
     // прослушка submit формы
     form.addEventListener('submit', (e) => {
         e.preventDefault();
-        console.log('Submit!');
         state.emitter.emit('event:render-listing', {});
     }) 
-    
 }
