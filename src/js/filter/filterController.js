@@ -14,10 +14,12 @@ export default async function(state) {
     view.changeBtnText(state.filter.result.length)
     // прослушка событий формы
     const form = document.querySelector('#filter-form');
-    form.addEventListener('change', (e) => {
+    form.addEventListener('change', async (e) => {
         e.preventDefault();
         state.filter.query = view.getInput();
-        console.log("🚀 ~ file: filterController.js:20 ~ form.addEventListener ~ state.filter.query:", state.filter.query)
+        await state.filter.getResults();
+    view.changeBtnText(state.filter.result.length)
+
     })
     
 }
