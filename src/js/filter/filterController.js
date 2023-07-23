@@ -11,15 +11,21 @@ export default async function(state) {
     // запрос на сервер
     await state.filter.getResults();
     // обновляем счетчик на кнопке
-    view.changeBtnText(state.filter.result.length)
+    view.changeBtnText(state.filter.result.length);
+
     // прослушка событий формы
     const form = document.querySelector('#filter-form');
     form.addEventListener('change', async (e) => {
         e.preventDefault();
         state.filter.query = view.getInput();
         await state.filter.getResults();
-    view.changeBtnText(state.filter.result.length)
-
+        view.changeBtnText(state.filter.result.length);
+    })
+    // прослушка события reset формы
+    form.addEventListener('reset', async () => {
+        state.filter.query = '';
+        await state.filter.getResults();
+        view.changeBtnText(state.filter.result.length);
     })
     
 }
