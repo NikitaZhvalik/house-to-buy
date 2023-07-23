@@ -3,8 +3,12 @@ import singleItem from './pages/singleItemPage';
 import favouritesPage from './pages/favouritesPage';
 import bidsPage from './pages/bidsPage';
 import errorPage from './pages/errorPage';
+import eventImitter from './utils/eventEmitter';
 
-const state = {};
+const state = {
+	relults: [],
+	emitter: new eventImitter(),
+};
 
 // для тестов
 window.state = state;

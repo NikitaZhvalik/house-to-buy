@@ -4,6 +4,7 @@ const elements = {
     filterSelect: document.getElementsByClassName('filter__dropdown'),
     filterRooms: document.getElementsByClassName('rooms__checkbox'),
     filterFields: document.getElementsByClassName('range__input'),
+    filterSubmit: document.getElementsByClassName('filter__show'),
 }
 
 export function render(params) {
@@ -98,7 +99,7 @@ export function render(params) {
         </div>
         <div class="filter__buttons">
             <button class="filter__show">Показать объектов</button>
-            <button class="filter__reset">Сбросить фильтр</button>
+            <button class="filter__reset" type="reset">Сбросить фильтр</button>
         </div>
     </form>
     `;
@@ -107,7 +108,11 @@ export function render(params) {
 }
 
 export function changeBtnText(number) {
-    document.querySelector('.filter__show').innerText = `Показать ${number} объектов`;
+    const btn = elements.filterSubmit[0];
+
+    btn.innerText = number > 0 ? `Показать ${number} объектов` : "Объекты не найдены";
+    
+    btn.disabled = number === 0 ? true : false;
 }
 
 export function getInput() {
