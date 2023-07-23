@@ -6,7 +6,7 @@ import errorPage from './pages/errorPage';
 import eventImitter from './utils/eventEmitter';
 
 const state = {
-	relult: [],
+	relults: [],
 	emitter: new eventImitter(),
 };
 

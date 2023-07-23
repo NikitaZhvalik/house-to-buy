@@ -10,6 +10,7 @@ export default async function(state) {
     view.render(state.filter.params);
     // запрос на сервер
     await state.filter.getResults();
+    state.results = state.filter.result;
     // обновляем счетчик на кнопке
     view.changeBtnText(state.filter.result.length);
 
@@ -19,6 +20,7 @@ export default async function(state) {
         e.preventDefault();
         state.filter.query = view.getInput();
         await state.filter.getResults();
+        state.results = state.filter.result;
         view.changeBtnText(state.filter.result.length);
     })
     // прослушка reset формы
