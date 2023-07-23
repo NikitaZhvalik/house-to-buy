@@ -31,6 +31,7 @@ export default async function(state) {
     form.addEventListener('submit', (e) => {
         e.preventDefault();
         console.log('Submit!');
+        state.emitter.emit('event:render-listing', {});
     }) 
     
 }
