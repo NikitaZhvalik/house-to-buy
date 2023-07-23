@@ -5,14 +5,14 @@ export function render(params) {
 
     let rooms = '';
     params.roomValues.forEach( value => rooms += `  <input
-                                                        name="rooms"
-                                                        type="checkbox"
-                                                        id="rooms_${value}"
-                                                        class="rooms__checkbox"
-                                                        value="${value}"/>
-                                                        <label for="rooms_${value}" class="rooms__btn">${value}</label>`);
+                                                    name="rooms"
+                                                    type="checkbox"
+                                                    id="rooms_${value}"
+                                                    class="rooms__checkbox"
+                                                    value="${value}"/>
+                                                    <label for="rooms_${value}" class="rooms__btn">${value}</label>`);
     
-    const html = `
+    const html = `e
     <form method="GET" class="container p-0">
         <div class="heading-1">Выбор квартир:</div>
         <div class="filter">

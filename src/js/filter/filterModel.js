@@ -14,4 +14,16 @@ export default class Filter {
             alert(error);
         }
     }
+
+    async getResults() {
+        try {
+            const queryString = 'https://jsproject.webcademy.ru/items';
+            const response = await fetch(queryString);
+            const data = await response.json();
+            this.result = await data;
+        }
+        catch(error) {
+            alert(error);
+        }
+    }
 }
