@@ -1,3 +1,11 @@
+import 'url-search-params-polyfill';
+
+const elements = {
+    filterSelect: document.getElementsByClassName('filter__dropdown'),
+    filterRooms: document.getElementsByClassName('rooms__checkbox'),
+    filterFields: document.getElementsByClassName('range__input'),
+}
+
 export function render(params) {
 
     let complexNames = '';
@@ -12,8 +20,8 @@ export function render(params) {
                                                     value="${value}"/>
                                                     <label for="rooms_${value}" class="rooms__btn">${value}</label>`);
     
-    const html = `e
-    <form method="GET" class="container p-0">
+    const html = `
+    <form id='filter-form' method="GET" class="container p-0">
         <div class="heading-1">Выбор квартир:</div>
         <div class="filter">
             <div class="filter__col">
@@ -100,6 +108,43 @@ export function render(params) {
 
 export function changeBtnText(number) {
     document.querySelector('.filter__show').innerText = `Показать ${number} объектов`;
+}
 
+export function getInput() {
+    const searchParams = new URLSearchParams();
+    
+    // 1. получаем значения с селекта
+    if (elements.filterSelect[0].value !== 'all') {
+        // append позволяет вставить в конец какого-либо элемента другой элемент
+        searchParams.append(elements.filterSelect[0].name, elements.filterSelect[0].value);
+    }
 
+    // 2. получаем значения комнат - чекбоксы
+    const roomsValues = [];
+    // Array.from - делает из псевдомассива массив, для того, чтобы мы смогли применить к нему метод forEach
+    Array.from(elements.filterRooms).forEach((checkbox) => {
+        if (checkbox.value !== '' && checkbox.checked) {
+            roomsValues.push(checkbox.value);
+        }
+    })
+    const roomsValuesStr = roomsValues.join(',');
+    // проверяем, что roomsValuesStr не пустая строка и тогда добавляем в URL rooms+массив с кол-ом комнат
+    if (roomsValuesStr !== '') {
+        searchParams.append('rooms', roomsValuesStr)
+    }
+
+    // 3. получаем значения площадь и цену из input'во
+    Array.from(elements.filterFields).forEach((input) => {
+        if (input.value !== '') {
+            searchParams.append(input.name, input.value);
+        }
+    })
+
+    const queryString = searchParams.toString();
+
+    if (queryString) {
+        return '?' + queryString;
+    } else {
+        return '';
+    }
 }
