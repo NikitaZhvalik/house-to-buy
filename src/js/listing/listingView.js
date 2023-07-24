@@ -12,7 +12,7 @@ export function render() {
     document.querySelector('#app').insertAdjacentHTML('beforeend', html);
 }
 
-export function renderCard(object) {
+export function renderCard(object, isFaved) {
     const html = `
             <article class="col-md-4">
 
@@ -21,7 +21,7 @@ export function renderCard(object) {
                     <div class="card__title">
                         ЖК ${object.complex_name}
                     </div>
-                    <div class="card__like">
+                    <div class="card__like ${isFaved ? 'card__like--active' : ''}">
                         <i class="fas fa-heart"></i>
                     </div>
                 </div>
