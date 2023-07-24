@@ -16,10 +16,10 @@ export function renderCard(object) {
     const html = `
             <article class="col-md-4">
 
-            <a href="object.html" class="card">
+            <a href="#/item/${object.id}" class="card">
                 <div class="card__header">
                     <div class="card__title">
-                        ЖК  ${object.complex_name}
+                        ЖК ${object.complex_name}
                     </div>
                     <div class="card__like">
                         <i class="fas fa-heart"></i>
