@@ -1,7 +1,8 @@
 import SingleItem from './singleItemModel'
 import * as view from './singleItemView';
 
-export default async function () {
+export default async function (state) {
+    console.log(state);
     // передаем id
     state.singleItem = new SingleItem(state.routeParams);
     // ждем ответа от сервера(карточку объекта )
@@ -45,5 +46,10 @@ export default async function () {
                 alert(error);
             })
         }
+    })
+
+    // отправить в избранное
+    document.querySelector('.button-favourite').addEventListener('click', () => {
+        state.favorites.toggleFav(state.singleItem.id);
     })
 }

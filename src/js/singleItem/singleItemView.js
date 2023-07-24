@@ -34,11 +34,6 @@ export function render(object) {
                                 <i class="fas fa-heart"></i> <span>В избранное</span>
                             </button>
 
-                            <!-- В Избранном -->
-                            <button class="button-favourite button-favourite--active">
-                                <i class="fas fa-heart"></i> <span>В избранном</span>
-                            </button>
-
                         </div>
 
                         <div class="object__desc-details">
