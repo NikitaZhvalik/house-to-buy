@@ -180,3 +180,10 @@ export function showModel() {
 export function hideModel() {
     document.querySelector('.modal-wrapper').classList.add('none');
 }
+
+export function getInput() {
+    const formData = {};
+    formData.name = document.querySelector('#form-name').value;
+    formData.phone = document.querySelector('#form-phone').value;
+    return formData;
+}

@@ -26,4 +26,12 @@ export default async function () {
             view.hideModel();
         }
     });
+
+    // отправка формы
+    document.querySelector('.modal__form').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const formData = view.getInput();
+        await state.singleItem.submitForm(formData);
+    })
+
 }
