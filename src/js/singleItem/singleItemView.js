@@ -1,10 +1,10 @@
-export function render() {
+export function render(object) {
     const appContainer = document.querySelector('#app');
 
     const html = `
             <div class="container p-0 pt-5">
                 <div class="heading-1">
-                    Квартира Студия, 45,5 м2 за 4 250 000 ₽
+                    ${object.title}, ${object.square} м2 за ${object.price_total} ₽
                 </div>
 
                 <!-- object -->
@@ -12,7 +12,7 @@ export function render() {
                     <!-- object__photo -->
                     <div class="object__photo">
                         <div class="object__photo-wrapper">
-                            <img src="img/slider-item/photo.png" alt="" />
+                            <img src="${object.image}" alt=""/>
                         </div>
                     </div>
                     <!-- // object__photo -->
@@ -20,14 +20,14 @@ export function render() {
                     <!-- object__desc -->
                     <div class="object__desc">
                         <div class="object__desc-sector">
-                            ЖК Генеральский
+                            ЖК ${object.complex_name}
                         </div>
 
                         <div class="object__desc-name">
                             <div class="object__desc-title">
-                                Студия, 45,5 м2
+                            ${object.title}
                             </div>
-                            <div class="object__desc-art">ГЕН-112-42</div>
+                            <div class="object__desc-art">${object.scu}</div>
 
                             <!-- Добавить в избранное -->
                             <button class="button-favourite">
@@ -46,19 +46,19 @@ export function render() {
                             <div class="params">
                                 <div class="params__item">
                                     <div class="params__definition">Корпус</div>
-                                    <div class="params__value">3</div>
+                                    <div class="params__value">${object.building}</div>
                                 </div>
                                 <div class="params__item">
                                     <div class="params__definition">Этаж</div>
-                                    <div class="params__value">8</div>
+                                    <div class="params__value">${object.floor}</div>
                                 </div>
                                 <div class="params__item">
                                     <div class="params__definition">Номер</div>
-                                    <div class="params__value">121</div>
+                                    <div class="params__value">${object.flat_number}</div>
                                 </div>
                                 <div class="params__item">
                                     <div class="params__definition">Комнат</div>
-                                    <div class="params__value">2</div>
+                                    <div class="params__value">${object.rooms}</div>
                                 </div>
                             </div>
                             <!-- // params -->
@@ -70,16 +70,16 @@ export function render() {
                                 <div
                                     class="details__value details__value--price"
                                 >
-                                    4 200 000 ₽
+                                ${object.price_total} ₽
                                 </div>
                             </div>
                             <div class="details__row">
                                 <div class="details__name">Цена за м2</div>
-                                <div class="details__value">64 000 ₽/м2</div>
+                                <div class="details__value">${object.price_sq_m} ₽/м2</div>
                             </div>
                             <div class="details__row">
                                 <div class="details__name">Площадь</div>
-                                <div class="details__value">60 м2</div>
+                                <div class="details__value">${object.square} м2</div>
                             </div>
                         </div>
 
@@ -92,7 +92,7 @@ export function render() {
             </div>
 
             <div class="container p-0">
-                <a href="index.html" class="back-to-results"
+                <a href="/" class="back-to-results"
                     >← Вернуться к результатам поиска</a
                 >
             </div>    
