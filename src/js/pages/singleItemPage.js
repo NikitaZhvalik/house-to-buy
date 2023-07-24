@@ -1,4 +1,6 @@
-export default function () {
-	const markup = `<div class="container"><h1>Single Item</h1></div>`;
-	document.querySelector('#app').innerHTML = markup;
+import singleItem from '../singleItem/singleItemController.js'
+
+export default function (state) {
+	document.querySelector('#app').innerHTML = '';
+	singleItem(state);
 }
