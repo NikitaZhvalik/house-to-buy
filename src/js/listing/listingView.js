@@ -16,7 +16,7 @@ export function renderCard(object, isFaved) {
     const html = `
             <article class="col-md-4">
 
-            <a href="#/item/${object.id}" class="card">
+            <a href="#/item/${object.id}" class="card" data-id='${object.id}'>
                 <div class="card__header">
                     <div class="card__title">
                         ЖК ${object.complex_name}
@@ -67,4 +67,13 @@ export function renderCard(object, isFaved) {
 
 export function clearListingContainer() {
     document.querySelector('#listingContainer').innerHTML = '';
+}
+
+export function toggleFavoriteIcon(elIcon, isFaved) {
+    if (isFaved === true) {
+        elIcon.classList.add('card__like--active');
+    }
+    else {
+        elIcon.classList.remove('card__like--active');
+    }
 }
