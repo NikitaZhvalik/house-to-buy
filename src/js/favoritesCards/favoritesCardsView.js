@@ -1,18 +1,22 @@
-export function render() {
+function renderContainer() {
     const html = `
-                <div class="cards-wrapper">
-                    <div class="container p-0 pt-5">
-                        <div id="listingContainer" class="row">
-                            <!-- cards render from js -->
-                        </div>
-                    </div>
-                </div>
-    `
+    <div class="container p-0 mb-5">
+        <div class="heading-1">Избранное</div>
+    </div>
+    
+    <div class="cards-wrapper">
+        <div class="container p-0">
+            <div id="cardHolder" class="row">
+                <!-- карточки рендерятся из JS -->
+            </div>
+        </div>
+    </div>
+    `;
 
-    document.querySelector('#app').insertAdjacentHTML('beforeend', html);
+    document.querySelector('#app').insertAdjacentHTML('afterbegin', html);
 }
 
-export function renderCard(object, isFaved) {
+function renderCards(object) {
     const html = `
             <article class="col-md-4">
 
@@ -21,7 +25,7 @@ export function renderCard(object, isFaved) {
                     <div class="card__title">
                         ЖК ${object.complex_name}
                     </div>
-                    <div class="card__like ${isFaved ? 'card__like--active' : ''}">
+                    <div class="card__like card__like--active">
                         <i class="fas fa-heart"></i>
                     </div>
                 </div>
@@ -61,12 +65,16 @@ export function renderCard(object, isFaved) {
             </a>
         </article>
     `
-
-    document.querySelector('#listingContainer').insertAdjacentHTML('beforeend', html);
+ 
+    document.querySelector('#cardHolder ').insertAdjacentHTML('beforeend', html);
 }
 
-export function clearListingContainer() {
-    document.querySelector('#listingContainer').innerHTML = '';
+export function renderPage(cards) {
+    renderContainer();
+
+    cards.forEach((card) => {
+        renderCards(card);
+    })
 }
 
 export function toggleFavoriteIcon(elIcon, isFaved) {

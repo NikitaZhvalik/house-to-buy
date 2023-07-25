@@ -1,4 +1,4 @@
-export function render(object) {
+export function render(object, isFaved) {
     const appContainer = document.querySelector('#app');
 
     const html = `
@@ -30,13 +30,8 @@ export function render(object) {
                             <div class="object__desc-art">${object.scu}</div>
 
                             <!-- Добавить в избранное -->
-                            <button class="button-favourite">
-                                <i class="fas fa-heart"></i> <span>В избранное</span>
-                            </button>
-
-                            <!-- В Избранном -->
-                            <button class="button-favourite button-favourite--active">
-                                <i class="fas fa-heart"></i> <span>В избранном</span>
+                            <button class="button-favourite ${isFaved ? 'button-favourite--active' : ''}">
+                                <i class="fas fa-heart"></i><span>${isFaved ? 'В избранном' : 'В избранное'}</span>
                             </button>
 
                         </div>
@@ -191,4 +186,16 @@ export function getInput() {
 export function clearInput() {
     document.querySelector('#form-name').value = '';
     document.querySelector('#form-phone').value = '';
+}
+
+export function toggleFavBtn(isFaved) {
+    const btn = document.querySelector('.button-favourite');
+    if (isFaved) {
+        btn.classList.add('button-favourite--active');
+        btn.querySelector('span').textContent = 'В избранном';
+    }
+    else {
+        btn.classList.remove('button-favourite--active');
+        btn.querySelector('span').textContent = 'В избранное';
+    }
 }

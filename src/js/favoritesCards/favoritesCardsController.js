@@ -1,24 +1,15 @@
-import * as view from './listingView';
+import FavoritesCards from './favoritesCardsModel';
+import * as view from './favoritesCardsView';
 
-export default function(state) {
-    view.render();
+export default async function(state) {
+    const favsList = state.favorites.favs;
 
-    state.results.forEach((item) => {
-        view.renderCard(item, state.favorites.isFav(item.id));
-    })
+    const favoritesCard = new FavoritesCards(favsList);
+    await favoritesCard.getFavs();
 
-    // функция прослушки клика по лайку для добавления в избранное
+    view.renderPage(favoritesCard.cards);
+
     addToFavListener();
-
-    state.emitter.subscribe('event:render-listing', () => {
-        view.clearListingContainer();
-        state.results.forEach((item) => {
-            view.renderCard(item, state.favorites.isFav(item.id));
-        })
-
-        // функция прослушки клика по лайку для добавления в избранное
-        addToFavListener();
-    })
 
     function addToFavListener() {
         Array.from(document.getElementsByClassName('card__like')).forEach((item) => {
@@ -34,5 +25,4 @@ export default function(state) {
             })
         })
     }
-
 }

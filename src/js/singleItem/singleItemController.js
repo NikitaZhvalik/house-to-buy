@@ -1,13 +1,13 @@
 import SingleItem from './singleItemModel'
 import * as view from './singleItemView';
 
-export default async function () {
+export default async function (state) {
     // передаем id
     state.singleItem = new SingleItem(state.routeParams);
     // ждем ответа от сервера(карточку объекта )
     await state.singleItem.getItem();
     // рендерим ответ от сервера(карточку объекта)
-    view.render(state.singleItem.result);
+    view.render(state.singleItem.result, state.favorites.isFav(state.singleItem.id));
 
     // открытие модального окна
     document.querySelector('.button-order').addEventListener('click', () => {
@@ -45,5 +45,11 @@ export default async function () {
                 alert(error);
             })
         }
+    })
+
+    // отправить в избранное
+    document.querySelector('.button-favourite').addEventListener('click', () => {
+        state.favorites.toggleFav(state.singleItem.id);
+        view.toggleFavBtn(state.favorites.isFav(state.singleItem.id));
     })
 }
