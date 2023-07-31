@@ -70,11 +70,13 @@ function renderCards(object) {
 }
 
 export function renderPage(cards) {
-    renderContainer();
+    if (cards) {
+        renderContainer();
 
-    cards.forEach((card) => {
-        renderCards(card);
-    })
+        cards.forEach((card) => {
+            renderCards(card);
+        })
+    }
 }
 
 export function toggleFavoriteIcon(elIcon, isFaved) {
