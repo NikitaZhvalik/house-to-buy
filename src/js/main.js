@@ -7,13 +7,10 @@ import eventImitter from './utils/eventEmitter';
 import Favorites from './favorites/favoritesModel';
 
 const state = {
-	relults: [],
+	results: [],
 	emitter: new eventImitter(),
 	favorites: new Favorites(), 
 };
-
-// для тестов
-window.state = state;
 
 // Пути маршрутизатора
 const routes = [
