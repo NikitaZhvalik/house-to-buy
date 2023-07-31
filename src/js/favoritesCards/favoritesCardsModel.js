@@ -4,11 +4,18 @@ export default class FavoritesCards {
     }
 
     async getFavs() {
-        const ids = this.favsList.toString();
-        const queryStr = `https://jsproject.webcademy.ru/items?ids=${ids}`;
-        const result = await fetch(queryStr);
-        const data = await result.json();
-        this.cards = await data;
+        try {
+            const ids = this.favsList.toString();
+            if (ids) {
+                const queryStr = `https://jsproject.webcademy.ru/items?ids=${ids}`;
+                const result = await fetch(queryStr);
+                const data = await result.json();
+                this.cards = await data;
+            }
+        }
+        catch(error) {
+            alert(error)
+        }
     }
 
 }

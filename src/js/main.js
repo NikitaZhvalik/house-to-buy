@@ -12,6 +12,8 @@ const state = {
 	favorites: new Favorites(), 
 };
 
+window.state = state;
+
 // Пути маршрутизатора
 const routes = [
 	{ path: '/', component: homePage },
